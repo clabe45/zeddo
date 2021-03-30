@@ -32,4 +32,5 @@ def get_top_news(api_key, language, n):
     if response.status_code != 200:
         raise RuntimeError(response.json()['message'])
 
-    return response.json()['articles'][:n]
+    articles = response.json()['articles']
+    return articles[:n] if n < len(articles) else articles
