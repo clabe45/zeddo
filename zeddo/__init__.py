@@ -44,7 +44,7 @@ def top_news(api_key, language, max_count):
     show_top_news(top_news)
     i = None
     while True:
-        s = click.prompt("Please enter an article number to open", default="")
+        s = click.prompt("Please enter an article number to open", default="", show_default=False)
         if s == '':
             sys.exit(0)
 
