@@ -1,4 +1,5 @@
 import webbrowser
+import sys
 
 import click
 import click_config_file
@@ -29,11 +30,18 @@ def top_news(api_key, language, n):
     show_top_news(top_news)
     n = None
     while True:
-        n = click.prompt("Please enter an article number to open", type=int)
-        if not (0 < n <= len(top_news)):
-            click.echo("No such article: {}".format(n))
+        s = click.prompt("Please enter an article number to open", default="")
+        if s == '':
+            sys.exit(0)
+
+        if not s.isnumeric():
+            click.echo("{} is not a number!".format(s))
         else:
-            break
+            n = int(s)
+            if not (0 < n <= len(top_news)):
+                click.echo("No such article: {}".format(n))
+            else:
+                break
     open_article(top_news, n)
 
 if __name__ == '__main__':
