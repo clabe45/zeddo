@@ -14,7 +14,7 @@ def get_sources(api_key):
 
     return response.json()['sources']
 
-def get_top_news(api_key, n):
+def get_top_news(api_key, language, n):
     global all_sources
     if all_sources is None:
         all_sources = [source['id'] for source in get_sources(api_key)]
@@ -23,6 +23,7 @@ def get_top_news(api_key, n):
     url = (
         "https://newsapi.org/v2/top-headlines?" +
         "apiKey={}&".format(api_key) +
+        "language={}&".format(language) +
         "sources={}&".format(','.join(all_sources)) +
         "pageSize={}".format(n)  # no need for more than n entries
     )

@@ -21,10 +21,11 @@ def open_article(top_news, n):
 
 @click.command()
 @click.option('--api-key', help='API key for News API')
+@click.option('--language', default='en')
 @click.option('-n', default=5)
 @click_config_file.configuration_option()
-def top_news(api_key, n):
-    top_news = get_top_news(api_key, n)
+def top_news(api_key, language, n):
+    top_news = get_top_news(api_key, language, n)
     show_top_news(top_news)
     n = None
     while True:
