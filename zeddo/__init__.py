@@ -4,7 +4,7 @@ import sys
 import click
 import click_config_file
 
-from news import get_top_news
+from zeddo.news import get_top_news
 
 def show_top_news(top_news):
     for i, article in enumerate(top_news):
