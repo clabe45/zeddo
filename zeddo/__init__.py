@@ -1,8 +1,10 @@
 import webbrowser
 import sys
+import os.path
 
 import click
 import click_config_file
+import toml
 
 from zeddo.news import get_top_news
 
@@ -26,6 +28,18 @@ def open_article(top_news, n):
 @click.option('-n', '--max-count', default=5)
 @click_config_file.configuration_option(cmd_name='zeddo')
 def top_news(api_key, language, max_count):
+    # Prompt for API key if not supplied
+    if api_key is None:
+        api_key = click.prompt("Enter your API key")
+        if click.confirm("Save to config file?", default="y"):
+            config_path = os.path.join(click.get_app_dir(app_name='zeddo'), 'config')
+            # Write to config
+            with open(config_path, 'w+') as c:
+                config = toml.load(c)
+                config['api_key'] = api_key
+                toml.dump(config, c)
+                print("Saved!\n")
+
     top_news = get_top_news(api_key, language, max_count)
     show_top_news(top_news)
     i = None
