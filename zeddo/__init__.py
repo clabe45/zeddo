@@ -41,12 +41,12 @@ def open_article(top_news, n):
 @click.option('-l', '--language', default='en',
     help='Filter articles by language')
 @click.option('-t', '--category', help='Filter by category')
-@click.option('-n', '--max-count', default=5, help='Limit number of articles')
 @click.option('-s', '--search', help='Search by key phrase')
+@click.option('-n', '--max-count', default=5, help='Limit number of articles')
 @click.version_option(VERSION, '-v', '--version')
 @click.help_option('-h', '--help')
 @click_config_file.configuration_option('-c', '--config', cmd_name='zeddo')
-def top_news(api_key, language, category, max_count, search):
+def top_news(api_key, language, category, search, max_count):
     # Prompt for API key if not supplied
     if api_key is None:
         api_key = click.prompt('Enter your API key')
@@ -69,8 +69,7 @@ def top_news(api_key, language, category, max_count, search):
             sys.exit(1)
 
     # Fetch news
-    top_news = get_top_news(api_key, language, category, max_count,
-        query=search)
+    top_news = get_top_news(api_key, language, category, search, max_count)
     # Display news
     show_top_news(top_news)
 

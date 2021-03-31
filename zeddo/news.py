@@ -14,7 +14,7 @@ def get_sources(api_key):
     return response.json()['sources']
 
 
-def get_top_news(api_key, language, category, n, query=None):
+def get_top_news(api_key, language, category, query, n):
     global all_sources
     if all_sources is None:
         all_sources = [source['id'] for source in get_sources(api_key)]
