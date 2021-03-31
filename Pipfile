@@ -12,6 +12,7 @@ toml = "*"
 [dev-packages]
 flake8 = "*"
 flake8-quotes = "*"
+twine = "*"
 
 [requires]
 python_version = "3.9"
