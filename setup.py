@@ -1,7 +1,8 @@
+import pathlib
 from setuptools import setup, find_packages
 
-with open('README.md', 'r') as r:
-    long_description = r.read()
+here = pathlib.Path(__file__).parent
+readme = (here / 'README.md').read_text()
 
 setup(
     name='zeddo',
@@ -13,7 +14,7 @@ setup(
         zeddo=zeddo.__init__:top_news
     ''',
     description='News CLI for lazy people',
-    long_description=long_description,
+    long_description=readme,
     keywords='cli news current events tool',
     url='http://github.com/clabe45/zeddo',
     author='Caleb Sacks',
