@@ -19,15 +19,15 @@ setup(
     author='Caleb Sacks',
     license='GPLv3',
     classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Environment :: Console",
-        "Intended Audience :: Developers"
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        'Development Status :: 3 - Alpha',
+        'Environment :: Console',
+        'Intended Audience :: Developers'
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX',
         'Programming Language :: Python',
-        "Topic :: Internet",
-        "Topic :: Office/Business :: News/Diary"
+        'Topic :: Internet',
+        'Topic :: Office/Business :: News/Diary'
     ]
 )

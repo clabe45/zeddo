@@ -8,19 +8,22 @@ import toml
 
 from zeddo.news import get_top_news
 
+
 def show_top_news(top_news):
     for i, article in enumerate(top_news):
         title = article['title']
         source = article['source']['name']
-        click.echo("{} {} {}".format(
-            click.style("[{}]".format(i+1), bold=True),
+        click.echo('{} {} {}'.format(
+            click.style('[{}]'.format(i+1), bold=True),
             title,
-            click.style("({})".format(source), dim=True)
+            click.style('({})'.format(source), dim=True)
         ))
+
 
 def open_article(top_news, n):
     article = top_news[n - 1]
     webbrowser.open(article['url'])
+
 
 @click.command()
 @click.option('--api-key', help='API key for News API')
@@ -30,33 +33,41 @@ def open_article(top_news, n):
 def top_news(api_key, language, max_count):
     # Prompt for API key if not supplied
     if api_key is None:
-        api_key = click.prompt("Enter your API key")
-        if click.confirm("Save to config file?", default="y"):
-            config_path = os.path.join(click.get_app_dir(app_name='zeddo'), 'config')
+        api_key = click.prompt('Enter your API key')
+        if click.confirm('Save to config file?', default='y'):
+            config_path = os.path.join(
+                click.get_app_dir(app_name='zeddo'),
+                'config'
+            )
             # Write to config
             with open(config_path, 'w+') as c:
                 config = toml.load(c)
                 config['api_key'] = api_key
                 toml.dump(config, c)
-                print("Saved!\n")
+                print('Saved!\n')
 
     top_news = get_top_news(api_key, language, max_count)
     show_top_news(top_news)
     i = None
     while True:
-        s = click.prompt("Please enter an article number to open", default="", show_default=False)
+        s = click.prompt(
+            'Please enter an article number to open',
+            default='',
+            show_default=False
+        )
         if s == '':
             sys.exit(0)
 
         if not s.isnumeric():
-            click.echo("{} is not a number!".format(s))
+            click.echo('{} is not a number!'.format(s))
         else:
             i = int(s)
             if not (0 < i <= len(top_news)):
-                click.echo("No such article: {}".format(i))
+                click.echo('No such article: {}'.format(i))
             else:
                 break
     open_article(top_news, i)
+
 
 if __name__ == '__main__':
     top_news()
