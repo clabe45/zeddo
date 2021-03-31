@@ -15,6 +15,7 @@ setup(
     ''',
     description='News CLI for lazy people',
     long_description=readme,
+    long_description_content_type='text/markdown',
     keywords='cli news current events tool',
     url='http://github.com/clabe45/zeddo',
     author='Caleb Sacks',
