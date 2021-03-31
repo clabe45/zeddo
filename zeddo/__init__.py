@@ -9,6 +9,15 @@ import toml
 from zeddo.news import get_top_news
 
 VERSION = '0.1.0'
+CATEGORIES = (
+    'business',
+    'entertainment',
+    'general',
+    'health',
+    'science',
+    'sports',
+    'technology'
+)
 
 
 def show_top_news(top_news):
@@ -30,12 +39,13 @@ def open_article(top_news, n):
 @click.command()
 @click.option('-k', '--api-key', help='API key for News API')
 @click.option('-l', '--language', default='en', help='Filter articles by language')
+@click.option('-t', '--category', help='Filter by category')
 @click.option('-n', '--max-count', default=5, help='Limit number of articles')
 @click.option('-s', '--search', help='Search by key phrase')
 @click.version_option(VERSION, '-v', '--version')
 @click.help_option('-h', '--help')
 @click_config_file.configuration_option('-c', '--config', cmd_name='zeddo')
-def top_news(api_key, language, max_count, search):
+def top_news(api_key, language, category, max_count, search):
     # Prompt for API key if not supplied
     if api_key is None:
         api_key = click.prompt('Enter your API key')
@@ -51,8 +61,15 @@ def top_news(api_key, language, max_count, search):
                 toml.dump(config, c)
                 print('Saved!\n')
 
+    if category is not None:
+        if category not in CATEGORIES:
+            click.echo('Invalid category. Valid categories: {}'
+                .format(', '.join(CATEGORIES)))
+            sys.exit(1)
+
     # Fetch news
-    top_news = get_top_news(api_key, language, max_count, query=search)
+    top_news = get_top_news(api_key, language, category, max_count,
+        query=search)
     # Display news
     show_top_news(top_news)
 

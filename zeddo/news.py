@@ -14,7 +14,7 @@ def get_sources(api_key):
     return response.json()['sources']
 
 
-def get_top_news(api_key, language, n, query=None):
+def get_top_news(api_key, language, category, n, query=None):
     global all_sources
     if all_sources is None:
         all_sources = [source['id'] for source in get_sources(api_key)]
@@ -24,7 +24,9 @@ def get_top_news(api_key, language, n, query=None):
         'https://newsapi.org/v2/top-headlines?' +
         'apiKey={}&'.format(api_key) +
         'language={}&'.format(language) +
-        'sources={}&'.format(','.join(all_sources)) +
+        # Cannot provide both `sources` and `category` for whatever reason
+        ('sources={}&'.format(','.join(all_sources)) if not category else '') +
+        ('category={}&'.format(category) if category else '') +
         ('q={}&'.format(query) if query else '') +
         'pageSize={}'.format(n)  # no need for more than n entries
     )
