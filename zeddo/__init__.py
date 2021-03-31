@@ -78,5 +78,9 @@ def top_news(api_key, language, max_count, search):
     open_article(top_news, i)
 
 
+def main():
+    top_news(prog_name='zeddo')
+
+
 if __name__ == '__main__':
-    top_news()
+    main()

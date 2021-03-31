@@ -11,7 +11,7 @@ setup(
     install_requires=['click', 'requests', 'click-config-file', 'toml'],
     entry_points='''
         [console_scripts]
-        zeddo=zeddo.__init__:top_news
+        zeddo=zeddo.__init__:main
     ''',
     description='News CLI for lazy people',
     long_description=readme,
