@@ -24,7 +24,7 @@ zeddo
 [3] Businessinsider.co.za | All the new lockdown rules ahead of the Easter holiday (News24)
 [4] BREAKING | Aspirant NPA head arrested for alleged corruption (News24)
 [5] Prof Salim Abdool Karim wanted to step down as early as September, says Mkhize (News24)
-Please enter an article number to open []: 
+Please enter an article number to open: 
 ```
 
 ## License
