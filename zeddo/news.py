@@ -14,7 +14,7 @@ def get_sources(api_key):
     return response.json()['sources']
 
 
-def get_top_news(api_key, language, n):
+def get_top_news(api_key, language, n, query=None):
     global all_sources
     if all_sources is None:
         all_sources = [source['id'] for source in get_sources(api_key)]
@@ -25,6 +25,7 @@ def get_top_news(api_key, language, n):
         'apiKey={}&'.format(api_key) +
         'language={}&'.format(language) +
         'sources={}&'.format(','.join(all_sources)) +
+        ('q={}&'.format(query) if query else '') +
         'pageSize={}'.format(n)  # no need for more than n entries
     )
 

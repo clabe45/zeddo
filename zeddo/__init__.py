@@ -29,8 +29,9 @@ def open_article(top_news, n):
 @click.option('--api-key', help='API key for News API')
 @click.option('--language', default='en')
 @click.option('-n', '--max-count', default=5)
+@click.option('-s', '--search')
 @click_config_file.configuration_option(cmd_name='zeddo')
-def top_news(api_key, language, max_count):
+def top_news(api_key, language, max_count, search):
     # Prompt for API key if not supplied
     if api_key is None:
         api_key = click.prompt('Enter your API key')
@@ -47,7 +48,7 @@ def top_news(api_key, language, max_count):
                 print('Saved!\n')
 
     # Fetch news
-    top_news = get_top_news(api_key, language, max_count)
+    top_news = get_top_news(api_key, language, max_count, query=search)
     # Display news
     show_top_news(top_news)
 
