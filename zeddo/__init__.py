@@ -38,7 +38,8 @@ def open_article(top_news, n):
 
 @click.command()
 @click.option('-k', '--api-key', help='API key for News API')
-@click.option('-l', '--language', default='en', help='Filter articles by language')
+@click.option('-l', '--language', default='en',
+    help='Filter articles by language')
 @click.option('-t', '--category', help='Filter by category')
 @click.option('-n', '--max-count', default=5, help='Limit number of articles')
 @click.option('-s', '--search', help='Search by key phrase')
