@@ -20,3 +20,6 @@ python_version = "3.9"
 [scripts]
 start = "python -m zeddo.__init__"
 lint = "flake8"
+build = "python setup.py sdist bdist_wheel"
+check_build = "twine check dist/*"
+publish = "twine upload dist/*"
