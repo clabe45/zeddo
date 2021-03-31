@@ -17,3 +17,4 @@ python_version = "3.9"
 
 [scripts]
 start = "python -m zeddo.__init__"
+lint = "flake8"
