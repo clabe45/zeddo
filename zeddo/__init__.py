@@ -46,8 +46,12 @@ def top_news(api_key, language, max_count):
                 toml.dump(config, c)
                 print('Saved!\n')
 
+    # Fetch news
     top_news = get_top_news(api_key, language, max_count)
+    # Display news
     show_top_news(top_news)
+
+    # Prompt for selection and open it in web browser
     i = None
     while True:
         s = click.prompt(
@@ -55,9 +59,11 @@ def top_news(api_key, language, max_count):
             default='',
             show_default=False
         )
+        # Quit on empty input
         if s == '':
             sys.exit(0)
 
+        # Validate input
         if not s.isnumeric():
             click.echo('{} is not a number!'.format(s))
         else:
@@ -66,6 +72,7 @@ def top_news(api_key, language, max_count):
                 click.echo('No such article: {}'.format(i))
             else:
                 break
+
     open_article(top_news, i)
 
 
