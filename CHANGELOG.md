@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Added
 - `--search` option.
+- `--version` option.
 - Short aliases for all options.
 
 ### Fixed

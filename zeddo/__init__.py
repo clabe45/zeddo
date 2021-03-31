@@ -8,6 +8,8 @@ import toml
 
 from zeddo.news import get_top_news
 
+VERSION = '0.1.0'
+
 
 def show_top_news(top_news):
     for i, article in enumerate(top_news):
@@ -30,6 +32,7 @@ def open_article(top_news, n):
 @click.option('-l', '--language', default='en', help='Filter articles by language')
 @click.option('-n', '--max-count', default=5, help='Limit number of articles')
 @click.option('-s', '--search', help='Search by key phrase')
+@click.version_option(VERSION, '-v', '--version')
 @click.help_option('-h', '--help')
 @click_config_file.configuration_option('-c', '--config', cmd_name='zeddo')
 def top_news(api_key, language, max_count, search):
