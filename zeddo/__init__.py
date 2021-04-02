@@ -8,7 +8,7 @@ import toml
 
 from zeddo.news import get_top_news
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 CATEGORIES = (
     'business',
     'entertainment',
