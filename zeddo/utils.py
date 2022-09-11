@@ -1,8 +1,20 @@
+"""
+zeddo.utils
+
+Utility functions for zeddo.
+"""
+
 import click
 import webbrowser
 
 
 def show_top_news(top_news):
+    """
+    Display top news articles.
+
+    :param top_news: List of top news articles
+    :type top_news: list
+    """
     for i, article in enumerate(top_news):
         title = article['title']
         source = article['source']['name']
@@ -14,5 +26,13 @@ def show_top_news(top_news):
 
 
 def open_article(top_news, n):
+    """
+    Open article in web browser.
+
+    :param top_news: List of top news articles
+    :type top_news: list
+    :param n: Index of article to open
+    :type n: int
+    """
     article = top_news[n - 1]
     webbrowser.open(article['url'])

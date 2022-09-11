@@ -1,3 +1,9 @@
+"""
+zeddo.cli
+
+Command line interface for zeddo.
+"""
+
 import sys
 
 import click
@@ -30,6 +36,9 @@ CATEGORIES = (
 @click.help_option('-h', '--help')
 @click_config_file.configuration_option('-c', '--config', cmd_name='zeddo')
 def top_news(api_key, language, category, search, max_count):
+    """
+    Fetch and display top news articles.
+    """
     # Prompt for API key if not supplied
     if api_key is None:
         api_key = click.prompt('Enter your API key')

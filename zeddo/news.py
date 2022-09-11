@@ -1,3 +1,9 @@
+"""
+zeddo.news
+
+Fetch news articles from News API.
+"""
+
 import requests
 
 # Cache list of all news sources
@@ -5,6 +11,15 @@ all_sources = None
 
 
 def get_sources(api_key):
+    """
+    Get a list of all news sources.
+
+    :param api_key: API key for News API
+    :type api_key: str
+    :return: List of news sources
+    :rtype: list
+    :raises RuntimeError: If API request fails
+    """
     url = 'https://newsapi.org/v2/sources?apiKey={}'.format(api_key)
 
     response = requests.request('GET', url)
@@ -15,6 +30,23 @@ def get_sources(api_key):
 
 
 def get_top_news(api_key, language, category, query, n):
+    """
+    Get top news articles.
+
+    :param api_key: API key for News API
+    :type api_key: str
+    :param language: Filter articles by language
+    :type language: str
+    :param category: Filter by category
+    :type category: str
+    :param query: Search by key phrase
+    :type query: str
+    :param n: Limit number of articles
+    :type n: int
+    :return: List of top news articles
+    :rtype: list
+    :raises RuntimeError: If API request fails
+    """
     global all_sources
     if all_sources is None:
         all_sources = [source['id'] for source in get_sources(api_key)]
