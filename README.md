@@ -2,6 +2,9 @@
 
 >News CLI for lazy people
 
+Zeddo aggregates news from many different sources so you can stay up date
+without leaving your terminal.
+
 ## Installation
 
 ```
@@ -10,8 +13,8 @@ pip install zeddo
 
 ## Set up
 
-Create a [News API account](https://newsapi.org/register) and remember the API
-key. (You can choose the free plan.)
+Create a [News API account](https://newsapi.org/register) and save the API key.
+(You can choose the free plan.)
 
 Then run `zeddo` and enter the API key when prompted.
 
